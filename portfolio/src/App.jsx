@@ -192,8 +192,8 @@ function App() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {[
-              { icon: '💻', title: 'Frontend', skills: ['React', 'Vue', 'HTML', 'CSS'] },
-              { icon: '⚙️', title: 'Backend', skills: ['Node.js', 'Python', 'SQL'] },
+              { icon: '💻', title: 'Frontend', skills: ['React', 'HTML', 'Next', 'Tailwind CSS','Typescript'] },
+              { icon: '⚙️', title: 'Backend', skills: ['Node.js', 'Python', 'SQL','MongoDB','Express.js'] },
               { icon: '🎨', title: 'Design', skills: ['Figma', 'Adobe XD'] },
               { icon: '🚀', title: 'Tools', skills: ['Git', 'Docker', 'AWS'] }
             ].map((category) => (
