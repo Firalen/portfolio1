@@ -42,7 +42,7 @@ function App() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gradient animate-pulse-slow">
-              Your Name
+             FIRAIF
             </h1>
             <div className="hidden md:flex space-x-8">
               {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
@@ -94,7 +94,7 @@ function App() {
               Welcome to My Portfolio
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-12 animate-fade-in-delay">
-              Full Stack Developer | UI/UX Enthusiast | Problem Solver
+              Full Stack Developer |  Problem Solver
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
               <a 
