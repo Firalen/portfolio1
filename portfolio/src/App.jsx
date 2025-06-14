@@ -1,10 +1,22 @@
 import { useState, useEffect } from 'react'
 import Particles from './components/Particles'
+import emailjs from '@emailjs/browser'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    success: false,
+    error: false,
+    message: ''
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +33,51 @@ function App() {
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setFormStatus({ submitting: true, success: false, error: false, message: '' })
+
+    try {
+      // Replace these with your EmailJS credentials
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'FIRAIF', // Your name
+      }
+
+      await emailjs.send(
+        'service_ac6520k', // Replace with your EmailJS service ID
+        'template_1oo99f7', // Replace with your EmailJS template ID
+        templateParams,
+        'R_3EqsuGnGJey6NXk' // Replace with your EmailJS public key
+      )
+
+      setFormStatus({
+        submitting: false,
+        success: true,
+        error: false,
+        message: 'Message sent successfully!'
+      })
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Failed to send message. Please try again.'
+      })
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -221,12 +278,16 @@ function App() {
             Get in Touch
           </h2>
           <div className="max-w-2xl mx-auto">
-            <form className="glass-effect rounded-2xl p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="glass-effect rounded-2xl p-8 space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gray-300 font-semibold mb-2">Name</label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
                   className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
                   placeholder="Your name"
                 />
@@ -236,6 +297,10 @@ function App() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
                   className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
                   placeholder="Your email"
                 />
@@ -244,16 +309,31 @@ function App() {
                 <label htmlFor="message" className="block text-gray-300 font-semibold mb-2">Message</label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
                   rows="4"
                   className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
                   placeholder="Your message"
                 ></textarea>
               </div>
+              {formStatus.message && (
+                <div className={`p-4 rounded-lg ${
+                  formStatus.success ? 'bg-green-500/20 text-green-300' : 
+                  formStatus.error ? 'bg-red-500/20 text-red-300' : ''
+                }`}>
+                  {formStatus.message}
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg hover:scale-[1.02] transition-all duration-300 glow-border"
+                disabled={formStatus.submitting}
+                className={`w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg hover:scale-[1.02] transition-all duration-300 glow-border ${
+                  formStatus.submitting ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
               >
-                Send Message
+                {formStatus.submitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
