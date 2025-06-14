@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Particles from './components/Particles'
 import emailjs from '@emailjs/browser'
 
@@ -10,8 +10,8 @@ emailjs.init({
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-  serviceId: 'service_abc123', // TODO: Replace with your service ID from EmailJS dashboard
-  templateId: 'template_1oo99f7',
+  serviceId: 'service_j0ownf9', // Your actual service ID from EmailJS dashboard
+  templateId: 'template_fynj25x',
   publicKey: 'R_3EqsuGnGJey6NXk'
 }
 
@@ -19,17 +19,13 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     success: false,
     error: false,
     message: ''
   })
+  const form = useRef()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,106 +43,35 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-
-  const validateForm = () => {
-    if (!formData.name.trim()) {
-      setFormStatus({
-        submitting: false,
-        success: false,
-        error: true,
-        message: 'Please enter your name'
-      })
-      return false
-    }
-
-    if (!formData.email.trim()) {
-      setFormStatus({
-        submitting: false,
-        success: false,
-        error: true,
-        message: 'Please enter your email'
-      })
-      return false
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(formData.email)) {
-      setFormStatus({
-        submitting: false,
-        success: false,
-        error: true,
-        message: 'Please enter a valid email address'
-      })
-      return false
-    }
-
-    if (!formData.message.trim()) {
-      setFormStatus({
-        submitting: false,
-        success: false,
-        error: true,
-        message: 'Please enter your message'
-      })
-      return false
-    }
-
-    if (formData.message.length < 10) {
-      setFormStatus({
-        submitting: false,
-        success: false,
-        error: true,
-        message: 'Message must be at least 10 characters long'
-      })
-      return false
-    }
-
-    return true
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormStatus({ submitting: true, success: false, error: false, message: '' })
 
-    if (!validateForm()) {
-      return
-    }
-
     try {
-      const templateParams = {
-        name: formData.name,
-        message: formData.message,
-        time: new Date().toLocaleString(),
-        from_email: formData.email,
-        reply_to: formData.email,
-      }
+      // Log the configuration for debugging
+      console.log('Using EmailJS config:', EMAILJS_CONFIG)
 
-      console.log('Sending email with params:', templateParams) // Debug log
-
-      const response = await emailjs.send(
+      const result = await emailjs.sendForm(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
-        templateParams
+        form.current,
+        {
+          publicKey: EMAILJS_CONFIG.publicKey
+        }
       )
 
-      console.log('EmailJS Response:', response) // Debug log
+      console.log('EmailJS Response:', result)
 
-      if (response.status === 200) {
+      if (result.status === 200) {
         setFormStatus({
           submitting: false,
           success: true,
           error: false,
           message: 'Message sent successfully! I will get back to you soon.'
         })
-        setFormData({ name: '', email: '', message: '' })
+        form.current.reset()
       } else {
-        throw new Error(`Failed to send message: ${response.text}`)
+        throw new Error(`Failed to send message: ${result.text}`)
       }
     } catch (error) {
       console.error('EmailJS Error:', error)
@@ -358,28 +283,24 @@ function App() {
             Get in Touch
           </h2>
           <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="glass-effect rounded-2xl p-8 space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="glass-effect rounded-2xl p-8 space-y-6">
               <div>
-                <label htmlFor="name" className="block text-gray-300 font-semibold mb-2">Name</label>
+                <label htmlFor="from_name" className="block text-gray-300 font-semibold mb-2">Name</label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
+                  id="from_name"
+                  name="from_name"
                   required
                   className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-gray-300 font-semibold mb-2">Email</label>
+                <label htmlFor="from_email" className="block text-gray-300 font-semibold mb-2">Email</label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
+                  id="from_email"
+                  name="from_email"
                   required
                   className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
                   placeholder="Your email"
@@ -390,8 +311,6 @@ function App() {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
                   required
                   rows="4"
                   className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-white placeholder-gray-400"
