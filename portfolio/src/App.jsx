@@ -350,7 +350,7 @@ function App() {
               {['GitHub', 'LinkedIn', 'Twitter'].map((platform) => (
                 <a
                   key={platform}
-                  href="#"
+                  href="https://github.com/Firalen"
                   className="text-gray-400 hover:text-white transition-colors duration-300 hover-lift"
                 >
                   {platform}
