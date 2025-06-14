@@ -2,6 +2,19 @@ import { useState, useEffect } from 'react'
 import Particles from './components/Particles'
 import emailjs from '@emailjs/browser'
 
+// Initialize EmailJS with your public key
+emailjs.init({
+  publicKey: "R_3EqsuGnGJey6NXk",
+  limitRate: true
+})
+
+// EmailJS Configuration
+const EMAILJS_CONFIG = {
+  serviceId: 'service_abc123', // TODO: Replace with your service ID from EmailJS dashboard
+  templateId: 'template_1oo99f7',
+  publicKey: 'R_3EqsuGnGJey6NXk'
+}
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -42,39 +55,106 @@ function App() {
     }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setFormStatus({ submitting: true, success: false, error: false, message: '' })
-
-    try {
-      // Replace these with your EmailJS credentials
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_name: 'FIRAIF', // Your name
-      }
-
-      await emailjs.send(
-        'service_ac6520k', // Replace with your EmailJS service ID
-        'template_1oo99f7', // Replace with your EmailJS template ID
-        templateParams,
-        'R_3EqsuGnGJey6NXk' // Replace with your EmailJS public key
-      )
-
-      setFormStatus({
-        submitting: false,
-        success: true,
-        error: false,
-        message: 'Message sent successfully!'
-      })
-      setFormData({ name: '', email: '', message: '' })
-    } catch (error) {
+  const validateForm = () => {
+    if (!formData.name.trim()) {
       setFormStatus({
         submitting: false,
         success: false,
         error: true,
-        message: 'Failed to send message. Please try again.'
+        message: 'Please enter your name'
+      })
+      return false
+    }
+
+    if (!formData.email.trim()) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Please enter your email'
+      })
+      return false
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Please enter a valid email address'
+      })
+      return false
+    }
+
+    if (!formData.message.trim()) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Please enter your message'
+      })
+      return false
+    }
+
+    if (formData.message.length < 10) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Message must be at least 10 characters long'
+      })
+      return false
+    }
+
+    return true
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setFormStatus({ submitting: true, success: false, error: false, message: '' })
+
+    if (!validateForm()) {
+      return
+    }
+
+    try {
+      const templateParams = {
+        name: formData.name,
+        message: formData.message,
+        time: new Date().toLocaleString(),
+        from_email: formData.email,
+        reply_to: formData.email,
+      }
+
+      console.log('Sending email with params:', templateParams) // Debug log
+
+      const response = await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        templateParams
+      )
+
+      console.log('EmailJS Response:', response) // Debug log
+
+      if (response.status === 200) {
+        setFormStatus({
+          submitting: false,
+          success: true,
+          error: false,
+          message: 'Message sent successfully! I will get back to you soon.'
+        })
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        throw new Error(`Failed to send message: ${response.text}`)
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: error.text || 'Failed to send message. Please try again later.'
       })
     }
   }
