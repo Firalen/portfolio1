@@ -251,7 +251,7 @@ function App() {
                   This is a web application that allows you to find the best places to date in Adama, Ethiopia.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {['React', 'Tailwind CSS'].map((tech) => (
+                  {['React', 'Tailwind CSS','Mapbox'].map((tech) => (
                     <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
                       {tech}
                     </span>
@@ -276,7 +276,7 @@ function App() {
                   This is a web application that for mugher cement volleyball team, Ethiopia.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                  {['React', 'Node.js', 'MongoDB','Tailwind CSS'].map((tech) => (
                     <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
                       {tech}
                     </span>
@@ -301,7 +301,7 @@ function App() {
                   This is a web application that allows you to detect brain tumor from MRI images.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {['React', 'Flask', 'SQL'].map((tech) => (
+                  {['React', 'Flask', 'SQL','TensorFlow'].map((tech) => (
                     <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
                       {tech}
                     </span>
@@ -327,7 +327,7 @@ function App() {
                   This is a web application that allows you to track your budget progress.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                  {['React', 'Node.js', 'MongoDB','Tailwind CSS'].map((tech) => (
                     <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
                       {tech}
                     </span>
