@@ -268,7 +268,7 @@ function App() {
               </div>
             </div>
             {/* Project Card 2 */}
- <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
+           <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
               <div className="p-6">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Project Two</h3>
                 <p className="text-gray-300 mb-6">
@@ -282,10 +282,10 @@ function App() {
                   ))}
                 </div>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                  <a href="https://mugher-cement-vc.onrender.com" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
                     View Demo →
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                  <a href="https://github.com/Firalen/MCV" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
                     Source Code →
                   </a>
                 </div>
