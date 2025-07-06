@@ -247,20 +247,21 @@ function App() {
               <div className="p-6">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
                 <p className="text-gray-300 mb-6">
-                  A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
+                  A modern web application built with React , featuring real-time updates and a beautiful UI.
+                  This is a web application that allows you to find the best places to date in Adama, Ethiopia.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                  {['React', 'Tailwind CSS'].map((tech) => (
                     <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
                       {tech}
                     </span>
                   ))}
                 </div>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                  <a href="https://adama-date-places.onrender.com/" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
                     View Demo →
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                  <a href="https://github.com/Firalen/Burger-mapper" target="_blank" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
                     Source Code →
                   </a>
                 </div>
