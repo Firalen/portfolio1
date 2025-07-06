@@ -269,7 +269,7 @@ function App() {
             {/* Project Card 2 */}
  <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
               <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project Two</h3>
                 <p className="text-gray-300 mb-6">
                   A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
                 </p>
@@ -293,7 +293,7 @@ function App() {
             {/* Project Card 3 */}
  <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
               <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project Three</h3>
                 <p className="text-gray-300 mb-6">
                   A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
                 </p>
@@ -318,7 +318,7 @@ function App() {
 
  <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
               <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project Four</h3>
                 <p className="text-gray-300 mb-6">
                   A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
                 </p>
