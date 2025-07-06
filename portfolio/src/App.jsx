@@ -290,6 +290,55 @@ function App() {
                 </div>
               </div>
             </div>
+            {/* Project Card 3 */}
+ <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
+                <p className="text-gray-300 mb-6">
+                  A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex space-x-4">
+                  <a href="#" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                    View Demo →
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                    Source Code →
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* Project Card 4 */}
+
+ <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
+                <p className="text-gray-300 mb-6">
+                  A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex space-x-4">
+                  <a href="#" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                    View Demo →
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                    Source Code →
+                  </a>
+                </div>
+              </div>
+            </div>
             {/* Add more project cards with similar structure */}
           </div>
         </div>
