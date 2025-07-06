@@ -148,31 +148,56 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 backdrop-blur-3xl"></div>
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 backdrop-blur-3xl animate-gradient"></div>
+        <div className="absolute inset-0">
+          <div className="absolute w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent animate-pulse"></div>
+          <div className="absolute w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent animate-pulse delay-300"></div>
+        </div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 text-gradient animate-fade-in">
-              Welcome to My Portfolio
+            <div className="mb-8">
+              <span className="text-blue-400 font-semibold tracking-wider animate-fade-in">HELLO, I'M</span>
+            </div>
+            <h1 className="text-7xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-x">
+              FIRAIF
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 animate-fade-in-delay">
-              Full Stack Developer |  Problem Solver
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
+            <div className="h-24 mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in-delay">
+                <span className="inline-block animate-typing">Full Stack Developer</span>
+              </h2>
+              <p className="text-xl text-gray-300 animate-fade-in-delay-2">
+                Crafting Digital Experiences with Code
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-delay-2">
               <a 
                 href="#contact" 
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 glow-border"
+                className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 relative overflow-hidden"
               >
-                Get in Touch
+                <span className="relative z-10">Get in Touch</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a 
                 href="#projects" 
-                className="px-8 py-4 glass-effect text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="group px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 hover:scale-105 transition-all duration-300"
               >
-                View Projects
+                <span className="relative z-10">View Projects</span>
               </a>
             </div>
+            <div className="mt-12 flex justify-center space-x-6 animate-fade-in-delay-3">
+              {['React', 'Node.js', 'Python', 'AWS'].map((tech) => (
+                <span key={tech} className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-sm text-gray-300 hover:bg-white/10 transition-all duration-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
+        </div>
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </section>
 
@@ -219,6 +244,30 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Project Card 1 */}
             <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
+                <p className="text-gray-300 mb-6">
+                  A modern web application built with React and Node.js, featuring real-time updates and a beautiful UI.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex space-x-4">
+                  <a href="#" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                    View Demo →
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                    Source Code →
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* Project Card 2 */}
+ <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
               <div className="p-6">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Project One</h3>
                 <p className="text-gray-300 mb-6">
