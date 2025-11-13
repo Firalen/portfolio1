@@ -344,6 +344,30 @@ function App() {
               </div>
             </div>
             {/* Add more project cards with similar structure */}
+             <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project Five</h3>
+                <p className="text-gray-300 mb-6">
+                  A modern web application built with Nextjs, featuring real-time updates and a beautiful UI.
+                  This is a web application that allows you to plan your trip and check your activity.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {['Next', 'typescript', 'MongoDB','Tailwind CSS'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex space-x-4">
+                  <a href="https://travel-mate-vert.vercel.app/" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                    View Demo →
+                  </a>
+                  <a href="https://github.com/Firalen/TravelMate" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                    Source Code →
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
