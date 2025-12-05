@@ -371,7 +371,34 @@ function App() {
           </div>
         </div>
       </section>
-
+    {/* Add more project cards with similar structure */}
+             <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-4 text-white">Project Six</h3>
+                <p className="text-gray-300 mb-6">
+                 A full-stack news alert system that fetches news from multiple RSS feeds, filters them by keyword/category/source,
+                  and sends email alerts. Built with React frontend and Python Flask backend.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {['React', 'Python', 'Flask','CSS'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 glass-effect text-white rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex space-x-4">
+                  <a href="https://news-alert-system.vercel.app/" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">
+                    View Demo →
+                  </a>
+                  <a href="https://github.com/Firalen/news-alert-system" className="text-gray-400 hover:text-gray-300 font-semibold transition-colors duration-300">
+                    Source Code →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Skills Section */}
       <section id="skills" className="py-32 relative">
         <div className="container mx-auto px-6">
