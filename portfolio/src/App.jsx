@@ -368,10 +368,8 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-  
-    {/* Add more project cards with similar structure */}
+        
+
              
      {/* Add more project cards with similar structure */}
              <div className="group glass-effect rounded-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300 card-glow">
